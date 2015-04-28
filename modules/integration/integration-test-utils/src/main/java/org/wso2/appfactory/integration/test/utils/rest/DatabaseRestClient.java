@@ -92,4 +92,78 @@ public class DatabaseRestClient extends BaseRestClient {
 	*/
 
 
+
+    /**
+     *
+     * @param applicationKey
+     * @throws Exception
+     */
+    public void getDatabaseUsers(String applicationKey) throws Exception{
+
+        Map<String, String> msgBodyMap = new HashMap<String, String>();
+        msgBodyMap.put("action", "getDatabaseUsers");
+        msgBodyMap.put("applicationKey", applicationKey);
+
+        HttpResponse response = super.doPostRequest("resources/database/users/list/ajax/list.jag", msgBodyMap);
+        if (response.getResponseCode() == HttpStatus.SC_OK) {
+            //TODO
+            return;
+        } else {
+            throw new AppFactoryIntegrationTestException("Get database users failed " + response.getData());
+        }
+
+    }
+
+    /**
+     *
+     * @param applicationKey
+     * @param databaseName
+     * @param databaseServerInstanceName
+     * @throws Exception
+     */
+    public void getAvailableUsersToAttachToDatabase(String applicationKey,String databaseName,String databaseServerInstanceName) throws Exception{
+
+        Map<String, String> msgBodyMap = new HashMap<String, String>();
+        msgBodyMap.put("action", "getAvailableUsersToAttachToDatabase");
+        msgBodyMap.put("applicationKey", applicationKey);
+        msgBodyMap.put("databaseName", databaseName);
+        msgBodyMap.put("dbServerInstanceName", databaseServerInstanceName );
+
+        HttpResponse response = super.doPostRequest("resources/database/users/list/ajax/list.jag", msgBodyMap);
+        if (response.getResponseCode() == HttpStatus.SC_OK) {
+            //TODO
+            return;
+        } else {
+            throw new AppFactoryIntegrationTestException("Get available users to attach to database failed " + response.getData());
+        }
+
+    }
+
+    /**
+     *
+     * @param applicationKey
+     * @param password
+     * @param rssInstance
+     * @param username
+     * @throws Exception
+     */
+    public void createDatabaseUser(String applicationKey,String password,String rssInstance,String username) throws Exception{
+
+        Map<String, String> msgBodyMap = new HashMap<String, String>();
+        msgBodyMap.put("action", "createDatabaseUser");
+        msgBodyMap.put("applicationKey", applicationKey);
+        msgBodyMap.put("password", password);
+        msgBodyMap.put("rssInstance", rssInstance );
+        msgBodyMap.put("username", username);
+
+        HttpResponse response = super.doPostRequest("resources/database/users/list/ajax/list.jag", msgBodyMap);
+        if (response.getResponseCode() == HttpStatus.SC_OK) {
+            //TODO
+            return;
+        } else {
+            throw new AppFactoryIntegrationTestException("Create database user failed " + response.getData());
+        }
+
+    }
+
 }
