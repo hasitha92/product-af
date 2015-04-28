@@ -10,6 +10,7 @@ import java.net.URL;
  * Created by hasitha on 4/28/15.
  */
 public class PropertyRestClient extends BaseRestClient {
+    
     /**
      * Construct authenticates REST client to invoke appmgt functions
      *
@@ -23,13 +24,4 @@ public class PropertyRestClient extends BaseRestClient {
     }
 
 
-    public void addProperty() throws Exception{
-        HttpResponse response = HttpRequestUtil
-                .doPost(new URL(getBackEndUrl() + AFConstants.APPMGT_URL_SURFIX + AFConstants.APPMGT_APPLICATION_ADD));
-    }
-
-    public void deleteProperty(){
-
-
-    }
 }

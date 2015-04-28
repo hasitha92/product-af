@@ -41,26 +41,7 @@ public class PropertiesTestCase extends AppFactoryIntegrationTest {
 
     }
 
-    /**
-     * Gets https response from the BE server
-     *
-     * @param keyVal   parameters as key-val map
-     * @param epSuffix suffix of the end point url
-     * @return http response from the back end
-     * @throws Exception
-     */
-    private HttpResponse getHttpResponse(Map<String, String> keyVal, String epSuffix) throws Exception {
-        PropertyRestClient appMgtRestClient = new PropertyRestClient(
-                getPropertyValue(AFConstants.URLS_APPFACTORY),
-                getAdminUsername(tenantInfoBean.getAdmin(), tenantInfoBean.getTenantDomain()),
-                getPropertyValue(AFConstants.DEFAULT_TENANT_ADMIN_PASSWORD));
-        return appMgtRestClient.doPostRequest(epSuffix, appMgtRestClient.generateMsgBody(keyVal));
-    }
 
-    // Create resource
-    // Delete resource
-    // Update description
-    // Update value
 
 
 
