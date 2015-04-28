@@ -4,7 +4,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.wso2.appfactory.integration.test.utils.AFConstants;
 import org.wso2.appfactory.integration.test.utils.AppFactoryIntegrationTest;
-import org.wso2.appfactory.integration.test.utils.rest.AppMgtRestClient;
 import org.wso2.appfactory.integration.test.utils.rest.PropertyRestClient;
 import org.wso2.carbon.automation.engine.annotations.ExecutionEnvironment;
 import org.wso2.carbon.automation.engine.annotations.SetEnvironment;

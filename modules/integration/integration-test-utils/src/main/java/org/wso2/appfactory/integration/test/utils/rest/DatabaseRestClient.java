@@ -21,6 +21,7 @@ package org.wso2.appfactory.integration.test.utils.rest;
 
 
 import org.apache.commons.httpclient.HttpStatus;
+import org.json.JSONObject;
 import org.wso2.appfactory.integration.test.utils.AFConstants;
 import org.wso2.appfactory.integration.test.utils.AppFactoryIntegrationTestException;
 import org.wso2.carbon.automation.test.utils.http.client.HttpRequestUtil;
@@ -84,11 +85,15 @@ public class DatabaseRestClient extends BaseRestClient {
 
 	/*
 
-	getDatabaseUsers
-			getDatabaseUsersForRssInstance
-	getAvailableUsersToAttachToDatabase
-			deleteUser
-	createDatabaseUser
+	getDatabaseUsers (done)
+
+			getDatabaseUsersForRssInstance (done)
+
+	getAvailableUsersToAttachToDatabase (done)
+
+			deleteUser (done)
+
+	createDatabaseUser (done)
 	*/
 
 
@@ -112,6 +117,21 @@ public class DatabaseRestClient extends BaseRestClient {
             throw new AppFactoryIntegrationTestException("Get database users failed " + response.getData());
         }
 
+    }
+
+    public void getDatabaseUsersForRssInstance(String applicationKey,String rssInstance)throws Exception{
+
+        Map<String, String> msgBodyMap = new HashMap<String, String>();
+        msgBodyMap.put("action", "getDatabaseUsersForRssInstance");
+        msgBodyMap.put("applicationKey", applicationKey);
+        msgBodyMap.put("rssInstance", rssInstance);
+
+        HttpResponse response = super.doPostRequest("resources/database/users/list/ajax/list.jag", msgBodyMap);
+        if (response.getResponseCode() == HttpStatus.SC_OK) {
+            return;
+        } else {
+            throw new AppFactoryIntegrationTestException("Create database user failed " + response.getData());
+        }
     }
 
     /**
@@ -139,12 +159,38 @@ public class DatabaseRestClient extends BaseRestClient {
 
     }
 
+
+    /**
+     *
+     * @param applicationKey
+     * @param name
+     * @param rssInstance
+     * @throws Exception
+     */
+    public void deleteUser(String applicationKey,String name,String rssInstance) throws Exception{
+
+        Map<String, String> msgBodyMap = new HashMap<String, String>();
+        msgBodyMap.put("action", "deleteUser");
+        msgBodyMap.put("applicationKey", applicationKey);
+        msgBodyMap.put("name", name);
+        msgBodyMap.put("rssInstance", rssInstance);
+
+        HttpResponse response = super.doPostRequest("resources/database/users/list/ajax/list.jag", msgBodyMap);
+        if (response.getResponseCode() == HttpStatus.SC_OK) {
+            return;
+        } else {
+            throw new AppFactoryIntegrationTestException("Create database user failed " + response.getData());
+        }
+
+    }
+
     /**
      *
      * @param applicationKey
      * @param password
      * @param rssInstance
      * @param username
+     * @return
      * @throws Exception
      */
     public void createDatabaseUser(String applicationKey,String password,String rssInstance,String username) throws Exception{
@@ -153,12 +199,11 @@ public class DatabaseRestClient extends BaseRestClient {
         msgBodyMap.put("action", "createDatabaseUser");
         msgBodyMap.put("applicationKey", applicationKey);
         msgBodyMap.put("password", password);
-        msgBodyMap.put("rssInstance", rssInstance );
+        msgBodyMap.put("rssInstance", rssInstance);
         msgBodyMap.put("username", username);
 
         HttpResponse response = super.doPostRequest("resources/database/users/list/ajax/list.jag", msgBodyMap);
         if (response.getResponseCode() == HttpStatus.SC_OK) {
-            //TODO
             return;
         } else {
             throw new AppFactoryIntegrationTestException("Create database user failed " + response.getData());

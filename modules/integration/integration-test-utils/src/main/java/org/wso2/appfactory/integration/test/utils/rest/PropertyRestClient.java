@@ -10,7 +10,7 @@ import java.net.URL;
  * Created by hasitha on 4/28/15.
  */
 public class PropertyRestClient extends BaseRestClient {
-    
+
     /**
      * Construct authenticates REST client to invoke appmgt functions
      *
